@@ -1,11 +1,8 @@
 import { DomListener } from '@core/DomListener';
 
 export class ExcelComponent extends DomListener {
-  constructor($root, options) {
-    super($root, {
-      name: 'Formula',
-      listeners: ['input'],
-    });
+  constructor($root, options = {}) {
+    super($root, options.listeners);
   }
 
   // Return layout component
@@ -13,7 +10,7 @@ export class ExcelComponent extends DomListener {
     return '';
   }
 
-  onInput(event) {
-    console.log('Formula: onInput', event);
+  init() {
+    this.initDOMListeners();
   }
 }
