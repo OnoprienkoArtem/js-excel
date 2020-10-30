@@ -6,4 +6,12 @@ export class DomListener {
 
     this.$root = $root;
   }
+
+  initDOMListeners() {
+
+  }
+
+  removeDOMListeners() {
+    
+  }
 }
