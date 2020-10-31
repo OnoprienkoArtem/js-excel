@@ -9,10 +9,8 @@ export class DomListener {
   }
 
   initDOMListeners() {
-    console.log(this.listeners);
-
     this.listeners.forEach(listener => {
-      this.$root.on(listener, );
+      this.$root.on(listener, () => {});
     });
   }
 
