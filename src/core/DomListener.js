@@ -21,14 +21,14 @@ export class DomListener {
     });
   }
 
-  removeDomListeners() {
+  removeDOMListeners() {
     this.listeners.forEach(listener => {
       const method = getMethodName(listener);
       if (!this[method]) {
         throw new Error(`Method ${method} is not implemented in ${this.name || ''} Component.`);
       }
 
-      this.$root.removeListener(listener, this[method].bind(this));
+      this.$root.off(listener, this[method].bind(this));
     });
   }
 }
