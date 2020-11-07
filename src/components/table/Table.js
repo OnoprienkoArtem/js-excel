@@ -17,11 +17,21 @@ export class Table extends ExcelComponent {
 
   onMousedown(event) {
     if (event.target.dataset.resize) {
-      console.log(event.target.dataset.resize);
       const $resizer = $(event.target);
       const $parent = $resizer.closest('[data-type="resizer"]');
+      const coords = $parent.getCoords();
 
-      console.log($parent);
+      console.log(coords);
+
+      document.onmousemove = e => {
+        const delta = e.pageX - coords.right;
+        const value = coords.width + delta;
+        $parent.$el.style.width = value + 'px';
+      };
+
+      document.onmouseup = () => {
+        document.onmousemove = null;
+      };
     }
   }
 }
