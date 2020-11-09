@@ -23,6 +23,8 @@ export class Table extends ExcelComponent {
       const sells = this.$root.findAll(`[data-col="${$parent.data.col}"]`);
       const type = $resizer.data.resize;
 
+      console.log(event);
+
       document.onmousemove = e => {
         if (type === 'col') {
           const delta = e.pageX - coords.right;
@@ -30,7 +32,7 @@ export class Table extends ExcelComponent {
           $parent.$el.style.width = value + 'px';
           sells.forEach(el => el.style.width = value + 'px');
         } else {
-          const delta = e.pageY - coords.bottom;
+          const delta = e.pageY - event.pageY;
           const value = coords.height + delta;
           $parent.$el.style.height = value + 'px';
         }
