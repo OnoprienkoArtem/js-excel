@@ -20,11 +20,10 @@ export class Table extends ExcelComponent {
       const $resizer = $(event.target);
       const $parent = $resizer.closest('[data-type="resizable"]');
       const coords = $parent.getCoords();
-      const sells = this.$root.findAll(`[data-col="${$parent.data.col}"]`);
       const type = $resizer.data.resize;
       let value;
 
-      $resizer.css({ 
+      $resizer.css({
         opacity: 1,
         bottom: '-5000px',
       });
@@ -34,9 +33,6 @@ export class Table extends ExcelComponent {
           const delta = e.pageX - coords.right;
           value = coords.width + delta;
           $resizer.css({ right: -delta + 'px' });
-
-          $parent.css({ width: value + 'px' });
-          sells.forEach(el => el.style.width = value + 'px');
         } else {
           // const delta = e.pageY - event.pageY;
           // const value = coords.height + delta;
@@ -48,10 +44,13 @@ export class Table extends ExcelComponent {
         document.onmousemove = null;
         document.onmouseup = null;
 
-        $parent.css({ width: value + 'px' });
-        sells.forEach(el => el.style.width = value + 'px');
 
-        $resizer.css({ 
+        if (type === 'col') {
+          $parent.css({ width: value + 'px' });
+          this.$root.findAll(`[data-col="${$parent.data.col}"]`).forEach(el => el.style.width = value + 'px');
+        }
+
+        $resizer.css({
           opacity: 0,
           bottom: 0,
           right: 0,
