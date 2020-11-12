@@ -9,7 +9,7 @@ export class Table extends ExcelComponent {
 
   constructor($root) {
     super($root, {
-      listeners: ['mousedown'],
+      listeners: ['mousedown', 'click'],
     });
   }
 
@@ -17,15 +17,26 @@ export class Table extends ExcelComponent {
     return createTable(50);
   }
 
+  prepare() {
+    this.selection = new TableSelection();
+  }
+
   init() {
     super.init();
-    
-    this.selection = new TableSelection();
+
+    const $cell = this.$root.find('[data-id="0:0"]');
+    this.selection.select($cell);
   }
 
   onMousedown(event) {
     if (shouldResize(event)) {
       resizeHandler(this.$root, event);
     }
+  }
+
+  onClick() {
+    console.log('click on cell');
+    const $cell = this.$root.find('[data-id="2:5"]');
+    this.selection.select($cell);
   }
 }
