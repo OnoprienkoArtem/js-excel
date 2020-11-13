@@ -8,7 +8,8 @@ function toCell(row) {
     return `
       <div 
         class="cell" 
-        contenteditable 
+        contenteditable
+        data-type="cell"
         data-col="${col}"
         data-id="${row}:${col}"
       ></div>`;
