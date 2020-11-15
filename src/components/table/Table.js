@@ -1,7 +1,7 @@
 import { ExcelComponent } from '@core/ExcelComponent';
 import { createTable } from './table.template';
 import { resizeHandler } from './table.resize';
-import { shouldResize, isCell, matrix } from './table.functions';
+import { shouldResize, isCell, matrix, nextSelector } from './table.functions';
 import { TableSelection } from './TableSelection';
 import { $ } from '@core/dom';
 
@@ -48,32 +48,11 @@ export class Table extends ExcelComponent {
     const keys = ['Enter', 'Tab', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp'];
     const { key } = event;
 
-    if (keys.includes(key)) {
+    if (keys.includes(key) && !event.shiftKey) {
       event.preventDefault();
       const id = this.selection.current.id(true);
       const $next = this.$root.find(nextSelector(key, id));
       this.selection.select($next);
     }
   }
-}
-
-function nextSelector(key, {col, row}) {
-  switch (key) {
-    case 'Enter':
-    case 'ArrowDown':
-      row++;
-      break;
-    case 'Tab':
-    case 'ArrowRight':
-      col++;
-      break;
-    case 'ArrowLeft':
-      col--;
-      break;
-    case 'ArrowUp':
-      row--;
-      break;
-  }
-
-  return `[data-id="${row}:${col}"]`;
 }
