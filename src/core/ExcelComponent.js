@@ -17,6 +17,10 @@ export class ExcelComponent extends DomListener {
     this.emitter.emit(event, ...args);
   }
 
+  $on(event, fn) {
+    this.emitter.subscribe(event, fn);
+  }
+
   // Return layout component
   toHTML() {
     return '';
