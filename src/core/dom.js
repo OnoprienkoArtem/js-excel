@@ -15,7 +15,12 @@ class Dom {
   }
 
   text(text) {
-    this.$el.textContent = text;
+    if (typeof html === 'string') {
+      this.$el.textContent = text;
+      return this;
+    }
+
+    return this.$el.textContent.trim();
   }
 
   clear() {
