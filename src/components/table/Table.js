@@ -63,6 +63,7 @@ export class Table extends ExcelComponent {
       const id = this.selection.current.id(true);
       const $next = this.$root.find(nextSelector(key, id));
       this.selection.select($next);
+      this.$emit('table:select', $next);
     }
   }
 }
