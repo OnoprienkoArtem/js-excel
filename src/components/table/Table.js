@@ -12,7 +12,7 @@ export class Table extends ExcelComponent {
   constructor($root, options) {
     super($root, {
       name: 'Table',
-      listeners: ['mousedown', 'keydown'],
+      listeners: ['mousedown', 'keydown', 'input'],
       ...options,
     });
   }
@@ -65,5 +65,9 @@ export class Table extends ExcelComponent {
       this.selection.select($next);
       this.$emit('table:select', $next);
     }
+  }
+
+  onInput(event) {
+    this.$emit('table:input', $(event.target));
   }
 }
