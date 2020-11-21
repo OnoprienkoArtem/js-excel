@@ -38,7 +38,8 @@ export class Formula extends ExcelComponent {
   }
 
   onKeydown(event) {
-    if (event.key === 'Enter') {
+    const keys = ['Enter', 'Tab'];
+    if (keys.includes(event.key)) {
       event.preventDefault();
       this.$emit('formula:done');
     }
