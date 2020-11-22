@@ -6,8 +6,10 @@ export function createStore() {
     subscribe(fn) {
       listeners.push(fn);
       return {
-        listeners = listeners.filter(l => l !== fn),
-      }
+        unsubscribe() {
+          listeners = listeners.filter(l => l !== fn);
+        },
+      };
     },
     dispatch() {},
     getState() {},
