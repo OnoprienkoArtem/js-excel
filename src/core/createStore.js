@@ -1,5 +1,5 @@
-export function createStore() {
-  const state = {};
+export function createStore(rootReducer, initialState = {}) {
+  let state = rootReducer({...initialState}, {type: '__INIT__'});
   let listeners = [];
 
   return {
@@ -11,7 +11,12 @@ export function createStore() {
         },
       };
     },
-    dispatch() {},
-    getState() {},
+    dispatch(action) {
+      state = rootReducer(state, action);
+      listeners.forEach(listener => listener(state));
+    },
+    getState() {
+      return state;
+    },
   };
 }
