@@ -49,11 +49,22 @@ export class Table extends ExcelComponent {
     this.$dispatch({ type: 'TEST' });
   }
 
+  async resizeTable(event) {
+    try {
+      const data = await resizeHandler(this.$root, event);
+      this.$dispatch({type: 'TABLE_RESIZE', data});
+      console.log('data', data);
+    } catch (e) {
+      console.warn('Resize error', e.message);
+    }
+  }
+
   onMousedown(event) {
     if (shouldResize(event)) {
-      resizeHandler(this.$root, event);
+      this.resizeTable(event);
     } else if (isCell(event)) {
       const $target = $(event.target);
+
       if (event.shiftKey) {
         const $cells = matrix($target, this.selection.current).map(id => this.$root.find(`[data-id="${id}"]`));
         this.selection.selectGroup($cells);
@@ -64,11 +75,12 @@ export class Table extends ExcelComponent {
   }
 
   onKeydown(event) {
-    const keys = [ 'Enter', 'Tab', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp' ];
+    const keys = ['Enter', 'Tab', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp'];
     const { key } = event;
 
     if (keys.includes(key) && !event.shiftKey) {
       event.preventDefault();
+
       const id = this.selection.current.id(true);
       const $next = this.$root.find(nextSelector(key, id));
       this.selectCell($next);
