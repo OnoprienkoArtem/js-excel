@@ -1,9 +1,9 @@
-import {TABLE_RESIZE} from "./types";
+import {TABLE_RESIZE} from './types';
 
 // Action Creator
-export function tableResize() {
-    return {
-        type: TABLE_RESIZE,
-        data,
-    }
+export function tableResize(data) {
+  return {
+    type: TABLE_RESIZE,
+    data,
+  };
 }

@@ -7,7 +7,6 @@ import { $ } from '@core/dom';
 import * as actions from '@/redux/actions';
 
 
-
 export class Table extends ExcelComponent {
   static className = 'excel__table';
 
@@ -20,7 +19,7 @@ export class Table extends ExcelComponent {
   }
 
   toHTML() {
-    return createTable(50);
+    return createTable(50, this.store.getState());
   }
 
   prepare() {
