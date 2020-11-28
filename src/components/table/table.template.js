@@ -18,7 +18,7 @@ function toCell(row) {
   };
 }
 
-function toColumn(col, index, width) {
+function toColumn({col, index, width}) {
   return `
     <div 
         class="column" 
@@ -52,6 +52,14 @@ function getWidth(state, index) {
   return (state[index] || DEFAULT_WIDTH) + 'px';
 }
 
+function withWidthFrom(state) {
+    return function(col, index) {
+        return {
+            col, index, width: getWidth(state.colState, index),
+        }
+    }
+}
+
 export function createTable(rowsCount = 15, state = {}) {
   const colsCount = CODES.Z - CODES.A + 1;
   const rows = [];
@@ -59,10 +67,8 @@ export function createTable(rowsCount = 15, state = {}) {
   const cols = new Array(colsCount)
       .fill('')
       .map(toChar)
-      .map((col, index) => {
-        const width = getWidth(state.colState, index);
-        return toColumn(col, index, width);
-      })
+      .map(withWidthFrom(state))
+      .map(toColumn)
       .join('');
 
   rows.push(createRow(null, cols));
