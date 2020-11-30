@@ -40,11 +40,12 @@ function toColumn({col, index, width}) {
 }
 
 function createRow(index, content) {
+  const resize = index ? '<div class="row-resize" data-resize="row"></div>' : '';
   return `
-    <div class="row" data-type="resizable">
+    <div class="row" data-type="resizable" data-row="${index}">
       <div class="row-info">
         ${index ? index : ''}
-        ${index ? '<div class="row-resize" data-resize="row"></div>' : ''}
+        ${resize}
       </div>
       <div class="row-data">${content}</div>
     </div>
