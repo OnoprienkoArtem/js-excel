@@ -8,9 +8,9 @@ export function tableResize(data) {
   };
 }
 
-export function changeText(text) {
+export function changeText(data) {
   return {
     type: CHANGE_TEXT,
-    data: text,
+    data,
   };
 }

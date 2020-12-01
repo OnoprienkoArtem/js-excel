@@ -17,7 +17,7 @@ export function rootReducer(state, action) {
     case CHANGE_TEXT:
       return {
         ...state,
-        currentText: action.data,
+        currentText: action.data.value,
       };
     default: return state;
   }
