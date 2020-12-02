@@ -33,6 +33,7 @@ export class Table extends ExcelComponent {
 
     this.$on('formula:input', text => {
       this.selection.current.text(text);
+      this.updateTextInStore(text);
     });
 
     this.$on('formula:done', () => {
@@ -87,12 +88,14 @@ export class Table extends ExcelComponent {
       this.selectCell($next);
     }
   }
-
-  onInput(event) {
-    // this.$emit('table:input', $(event.target));
+  updateTextInStore(value) {
     this.$dispatch(actions.changeText({
       id: this.selection.current.id(),
-      value: $(event.target).text(),
+      value
     }));
+  }
+
+  onInput(event) {
+    this.updateTextInStore($(event.target).text());
   }
 }
