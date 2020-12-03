@@ -48,7 +48,6 @@ export class Table extends ExcelComponent {
   selectCell($cell) {
     this.selection.select($cell);
     this.$emit('table:select', $cell);
-    this.$dispatch({ type: 'TEST' });
   }
 
   async resizeTable(event) {
@@ -88,6 +87,7 @@ export class Table extends ExcelComponent {
       this.selectCell($next);
     }
   }
+
   updateTextInStore(value) {
     this.$dispatch(actions.changeText({
       id: this.selection.current.id(),
