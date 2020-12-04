@@ -32,10 +32,10 @@ export class Formula extends ExcelComponent {
     //   this.$formula.text($cell.text());
     // });
 
-    this.$subscribe(state => {
-      console.log('formula update', state.currentText);
-      this.$formula.text(state.currentText);
-    });
+    // this.$subscribe(state => {
+    //   console.log('formula update', state.currentText);
+    //   this.$formula.text(state.currentText);
+    // });
   }
 
   onInput(event) {
