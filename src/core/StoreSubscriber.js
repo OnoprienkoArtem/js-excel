@@ -1,4 +1,4 @@
-import {isEqual} from "@core/utils";
+import {isEqual} from '@core/utils';
 
 export class StoreSubscriber {
   constructor(store) {
@@ -18,7 +18,7 @@ export class StoreSubscriber {
               const changes = {[key]: state[key]};
               component.storeChanged(changes);
             }
-          })
+          });
         }
       });
 
