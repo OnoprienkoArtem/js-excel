@@ -19,7 +19,7 @@ function toButton(button) {
   `;
 }
 
-export function createToolbar() {
+export function createToolbar(state) {
   const buttons = [
     {
       icon: 'format_align_left',
@@ -44,16 +44,16 @@ export function createToolbar() {
     },
     {
       icon: 'format_bold',
-      active: false,
+      active: state['fontWeight'] === 'bold',
       value: {
-        fontWeight: 'bold',
+        fontWeight: state['fontWeight'] === 'bold' ? 'normal' : 'bold',
       },
     },
     {
       icon: 'format_italic',
-      active: false,
+      active: state['fontStyle'] === 'italic',
       value: {
-        fontStyle: 'italic',
+        fontStyle: state['fontStyle'] === 'italic' ? 'normal' : 'italic',
       },
     },
     {

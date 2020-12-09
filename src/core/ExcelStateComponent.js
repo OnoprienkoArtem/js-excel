@@ -14,7 +14,7 @@ export class ExcelStateComponent extends ExcelComponent {
   }
 
   setState(newState) {
-    this.state = {...newState};
+    this.state = {...this.state, ...newState};
     this.$root.html(this.template);
   }
 }
