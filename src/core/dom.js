@@ -86,7 +86,7 @@ class Dom {
   getStyles(styles = []) {
     return styles.reduce((res, s) => {
       res[s] = this.$el.style[s];
-      return res[s];
+      return res;
     }, {});
   }
 

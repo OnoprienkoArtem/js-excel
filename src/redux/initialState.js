@@ -1,5 +1,5 @@
 import {storage} from '@core/utils';
-import {defaultStyles} from "@/constants";
+import {defaultStyles} from '@/constants';
 
 const defaultState = {
   rowState: {},
