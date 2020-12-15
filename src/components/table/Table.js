@@ -46,7 +46,7 @@ export class Table extends ExcelComponent {
       this.$dispatch(actions.applyStyle({
         value,
         ids: this.selection.selectedIds,
-      }))
+      }));
     });
   }
 
