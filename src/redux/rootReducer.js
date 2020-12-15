@@ -30,7 +30,7 @@ export function rootReducer(state, action) {
       field = 'stylesState';
       val = state[field] || {};
       action.data.ids.forEach(id => {
-        val[id] = toInlineStyles(action.data.value);
+        val[id] = {...val[id], ...action.data.value};
       });
       return {
         ...state,

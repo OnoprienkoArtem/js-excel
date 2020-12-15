@@ -10,4 +10,12 @@ const defaultState = {
   currentStyles: defaultStyles,
 };
 
-export const initialState = storage('excel-state') ? storage('excel-state') : defaultState;
+const normalize = state => ({
+  ...state,
+  currentStyles: defaultState,
+  currentText: '',
+});
+
+export const initialState = storage('excel-state')
+  ? normalize(storage('excel-state'))
+  : defaultState;
