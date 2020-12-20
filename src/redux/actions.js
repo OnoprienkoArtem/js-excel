@@ -3,7 +3,7 @@ import {
   CHANGE_TEXT,
   CHANGE_STYLES,
   APPLY_STYLE,
-  CHANGE_TITLE
+  CHANGE_TITLE,
 } from './types';
 
 // Action Creator
