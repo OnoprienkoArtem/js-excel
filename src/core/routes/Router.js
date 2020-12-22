@@ -1,4 +1,5 @@
 import {$} from '@core/dom';
+import {ActiveRoute} from '@core/routes/ActiveRoute';
 
 export class Router {
   constructor(selector, routes) {
@@ -16,10 +17,12 @@ export class Router {
 
   init() {
     window.addEventListener('hashchange', this.changePageHandler);
+    this.changePageHandler();
   }
 
   changePageHandler(event) {
-
+    console.log(ActiveRoute.path);
+    console.log(ActiveRoute.param);
   }
 
   destroy() {
