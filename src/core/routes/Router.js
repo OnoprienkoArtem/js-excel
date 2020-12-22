@@ -9,10 +9,20 @@ export class Router {
     this.$placeholder = $(selector);
     this.routes = routes;
 
+    this.changePageHandler = this.changePageHandler.bind(this);
+
     this.init();
   }
 
   init() {
+    window.addEventListener('hashchange', this.changePageHandler);
+  }
 
+  changePageHandler(event) {
+
+  }
+
+  destroy() {
+    window.removeEventListener('hashchange', this.changePageHandler);
   }
 }
