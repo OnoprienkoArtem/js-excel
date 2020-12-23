@@ -8,9 +8,10 @@
 // import {debounce, storage} from '@core/utils';
 // import { initialState } from '@/redux/initialState';
 import './scss/index.scss';
+import {DashboardPage} from '@/pages/DashboardPage';
 
 new Router('#app', {
-
+  dashboard: DashboardPage,
 });
 //
 // const store = createStore(rootReducer, initialState);

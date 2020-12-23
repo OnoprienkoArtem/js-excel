@@ -23,6 +23,8 @@ export class Router {
   changePageHandler(event) {
     console.log(ActiveRoute.path);
     console.log(ActiveRoute.param);
+
+    this.$placeholder.html(`<h1>${ ActiveRoute.path }</h1>`);
   }
 
   destroy() {
