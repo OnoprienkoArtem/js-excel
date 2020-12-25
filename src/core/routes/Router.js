@@ -1,5 +1,5 @@
 import {$} from '@core/dom';
-import {ActiveRoute} from '@core/routes/ActiveRoute';
+// import {ActiveRoute} from '@core/routes/ActiveRoute';
 
 export class Router {
   constructor(selector, routes) {
@@ -24,6 +24,8 @@ export class Router {
     const Page = this.routes.dashboard;
     const page = new Page();
     this.$placeholder.append(page.getRoot());
+
+    page.afterRender();
   }
 
   destroy() {
