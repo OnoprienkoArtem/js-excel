@@ -10,6 +10,8 @@ export class Router {
     this.$placeholder = $(selector);
     this.routes = routes;
 
+    this.page = null;
+
     this.changePageHandler = this.changePageHandler.bind(this);
 
     this.init();
@@ -21,10 +23,15 @@ export class Router {
   }
 
   changePageHandler() {
+    if (this.page) {
+      this.page.destroy();
+    }
+    this.$placeholder.clear();
+
     const Page = ActiveRoute.path.includes('excel') ? this.routes.excel : this.routes.dashboard;
-    const page = new Page();
-    this.$placeholder.append(page.getRoot());
-    page.afterRender();
+    this.page = new Page();
+    this.$placeholder.append(this.page.getRoot());
+    this.page.afterRender();
   }
 
   destroy() {
