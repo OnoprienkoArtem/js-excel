@@ -1,4 +1,4 @@
-import {storage} from '@core/utils';
+import {clone} from '@core/utils';
 import {defaultStyles, defaultTitle} from '@/constants';
 
 const defaultState = {
@@ -18,5 +18,5 @@ const normalize = state => ({
 });
 
 export function normalizeInitialState(state) {
-  return state ? normalize(state) : defaultState;
+  return state ? normalize(state) : clone(defaultState);
 }
