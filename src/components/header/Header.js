@@ -46,7 +46,12 @@ export class Header extends ExcelComponent {
     const $target = $(event.target);
 
     if ($target.data.button === 'remove') {
+      const decision = confirm('Do you really want to delete this page?');
 
+      if (decision) {
+        localStorage.removeItem('excel:' + ActiveRoute.param);
+        ActiveRoute.navigate('');
+      }
     } else if ($target.data.button === 'exit') {
       ActiveRoute.navigate('');
     }
