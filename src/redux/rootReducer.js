@@ -51,7 +51,7 @@ export function rootReducer(state, action) {
     case UPDATE_DATE:
       return {
         ...state,
-        openedDate: new Date().toJSON() ,
+        openedDate: new Date().toJSON(),
       };
     default: return state;
   }
