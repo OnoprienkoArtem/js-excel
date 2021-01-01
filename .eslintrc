@@ -3,7 +3,8 @@
     "env": {
         "es6": true,
         "browser": true,
-        "node": true
+        "node": true,
+        "jest/globals": true
     },
     "rules": {
         // "semi": "off",
@@ -12,7 +13,7 @@
         "object-curly-spacing": "off",
         "operator-linebreak": "off",
         "max-len": "off"
-        
     },
+    "plugins":  ["jest"],
     "extends": ["eslint:recommended", "google"]
 }
