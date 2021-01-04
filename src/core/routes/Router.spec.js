@@ -32,6 +32,4 @@ describe('Router:', () => {
     router.changePageHandler();
     expect($root.innerHTML).toBe('<div>dashboard</div>');
   });
-
-
 });
