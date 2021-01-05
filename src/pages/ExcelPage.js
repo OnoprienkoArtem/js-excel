@@ -13,10 +13,31 @@ function storageName(param) {
   return 'excel:' + param;
 }
 
+class StateProcessor {
+  constructor(saver, delay = 300) {
+    this.saver = saver;
+    this.listen = debounce(this.listen.bind(this), delay);
+  }
+
+  listen() {
+    this.saver.save(state);
+  }
+}
+
 export class ExcelPage extends Page {
+  constructor(param) {
+    super(param);
+
+    this.storeSub = null;
+    this.processor = new StateProcessor();
+  }
+
   getRoot() {
     const params = this.params ? this.params : Date.now().toString();
-    const state = storage(storageName(params));
+
+
+    const state = {};
+    // const state = storage(storageName(params));
     const initialState = normalizeInitialState(state);
     const store = createStore(rootReducer, initialState);
 
@@ -24,7 +45,7 @@ export class ExcelPage extends Page {
       storage(storageName(params), state);
     }, 300);
 
-    store.subscribe(stateListener);
+    this.storeSub = store.subscribe(stateListener);
 
     this.excel = new Excel({
       components: [Header, Toolbar, Formula, Table],
@@ -40,5 +61,6 @@ export class ExcelPage extends Page {
 
   destroy() {
     this.excel.destroy();
+    this.storeSub.unsubscribe();
   }
 }
