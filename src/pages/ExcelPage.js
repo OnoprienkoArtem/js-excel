@@ -28,16 +28,32 @@ class StateProcessor {
   }
 }
 
+class LocalStorageClient {
+  constructor(name) {
+    this.name = storageName(name);
+  }
+
+  save() {
+
+  }
+
+  get() {
+
+  }
+}
+
 export class ExcelPage extends Page {
   constructor(param) {
     super(param);
 
     this.storeSub = null;
-    this.processor = new StateProcessor();
+    this.processor = new StateProcessor(
+      new LocalStorageClient(this.params)
+    );
   }
 
   async getRoot() {
-    const params = this.params ? this.params : Date.now().toString();
+    // const params = this.params ? this.params : Date.now().toString();
 
     const state = await this.processor.get();
     // const state = storage(storageName(params));
