@@ -33,12 +33,13 @@ class LocalStorageClient {
     this.name = storageName(name);
   }
 
-  save() {
-
+  save(state) {
+    storage(this.name, state);
+    return Promise.resolve();
   }
 
   get() {
-
+    return Promise.resolve(storage(this.name));
   }
 }
 
@@ -53,16 +54,9 @@ export class ExcelPage extends Page {
   }
 
   async getRoot() {
-    // const params = this.params ? this.params : Date.now().toString();
-
     const state = await this.processor.get();
-    // const state = storage(storageName(params));
     const initialState = normalizeInitialState(state);
     const store = createStore(rootReducer, initialState);
-
-    // const stateListener = debounce(state => {
-    //   storage(storageName(params), state);
-    // }, 300);
 
     this.storeSub = store.subscribe(this.processor.listen);
 
