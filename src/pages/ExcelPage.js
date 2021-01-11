@@ -39,7 +39,16 @@ class LocalStorageClient {
   }
 
   get() {
-    return Promise.resolve(storage(this.name));
+    // return Promise.resolve(storage(this.name));
+
+    // show loader, simulate data loading
+    return new Promise(resolve => {
+      const state = storage(this.name);
+
+      setTimeout(() => {
+        resolve(state);
+      }, 5000);
+    });
   }
 }
 
@@ -49,7 +58,7 @@ export class ExcelPage extends Page {
 
     this.storeSub = null;
     this.processor = new StateProcessor(
-      new LocalStorageClient(this.params)
+        new LocalStorageClient(this.params)
     );
   }
 
